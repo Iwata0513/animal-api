@@ -35,8 +35,8 @@ public class AnimalController {
     
     // 動物の情報取得
     @GetMapping("/animals/{animalkey}")
-    public Animal getByOneAnimal(@PathVariable("animalkey") String animalkey) {
-        return animalInfoGetService.getByOneAnimal(animalkey);
+    public Animal getByOneAnimal(@PathVariable("animalkey") String animalKey) {    	
+        return animalInfoGetService.getByOneAnimal(animalKey);
     }
     
     

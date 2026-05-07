@@ -39,8 +39,19 @@ public class AnimalInfoGetService {
 	}
 	
 	// 指定した動物の情報を取得
-	public Animal getByOneAnimal(String animalKey) {		
+	public Animal getByOneAnimal(String animalKey) {
+        
+		// リクエストキーのチェック
+		if (animalKey == null || animalKey.isBlank()) {
+            throw new IllegalArgumentException("animalKey is null or empty");
+        }
+
 		Animal animal = animalMap.get(animalKey);
+
+		// キーの動物の存在チェック
+        if (animal == null) {
+            throw new RuntimeException("Animal not found: " + animalKey);
+        }
 		
 		return animal;
 	}
