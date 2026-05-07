@@ -8,12 +8,13 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import animal.model.Animal;
+import animal.data.AnimalSummary;
 
 @Service
 public class AnimalInfoGetService {
 	
 	private final Map<String,Animal> animalMap = new HashMap<>();
-	private final Map<String,String> animalMapSummary = new HashMap<>();
+	private final List<AnimalSummary> animalSummaryList = new ArrayList<>();
 	
 	public AnimalInfoGetService() {
 		// 動物の情報全てを設定
@@ -22,13 +23,14 @@ public class AnimalInfoGetService {
 		
 		// サマリ情報を生成
 		for(Map.Entry<String,Animal> entry : animalMap.entrySet()) {
-			animalMapSummary.put(entry.getKey(), entry.getValue().getSpecies());
+			AnimalSummary animal = new AnimalSummary(entry.getKey(), entry.getValue().getSpecies());
+			animalSummaryList.add(animal);
 		}
 	}
 	
 	// 登録中の動物一覧
-	public Map<String,String>  getAnimalSummaries(){
-		return animalMapSummary;
+	public List<AnimalSummary>  getAnimalSummaries(){
+		return animalSummaryList;
 	}
 	
 	// 登録中の動物情報全て

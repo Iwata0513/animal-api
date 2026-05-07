@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import animal.data.AnimalSummary;
 import animal.model.Animal;
 import animal.service.AnimalInfoGetService;
 
@@ -22,7 +23,7 @@ public class AnimalController {
 
 	//登録中の動物一覧 動物名とリクエストキーのみ
     @GetMapping("/animals/summary")
-    public Map<String,String> getAnimalSummaryList() {
+    public List<AnimalSummary> getAnimalSummaryList() {
         return animalInfoGetService.getAnimalSummaries();
     }
 	
@@ -33,7 +34,7 @@ public class AnimalController {
     }
     
     // 動物の情報取得
-    @GetMapping("animals/{animalkey}")
+    @GetMapping("/animals/{animalkey}")
     public Animal getByOneAnimal(@PathVariable("animalkey") String animalkey) {
         return animalInfoGetService.getByOneAnimal(animalkey);
     }
