@@ -17,8 +17,8 @@ public class AnimalInfoGetService {
 	
 	public AnimalInfoGetService() {
 		// 動物の情報全てを設定
-		animalMap.put("MikeNeko", new Animal("三毛猫","猫","可愛い日本猫",15));
-		animalMap.put("ShibaInu", new Animal("芝犬","犬","もふもふな日本犬",15));
+		animalMap.put("mikeneko", new Animal("三毛猫","猫","可愛い日本猫",15));
+		animalMap.put("shibainu", new Animal("芝犬","犬","もふもふな日本犬",15));
 		
 		// サマリ情報を生成
 		for(Map.Entry<String,Animal> entry : animalMap.entrySet()) {
@@ -27,12 +27,12 @@ public class AnimalInfoGetService {
 	}
 	
 	// 登録中の動物一覧
-	public Map<String,String>  getAnimalSummaryList(){
+	public Map<String,String>  getAnimalSummaries(){
 		return animalMapSummary;
 	}
 	
 	// 登録中の動物情報全て
-	public List<Animal> getAnimalAllInfoList(){
+	public List<Animal> getAllAnimals(){
 		return new ArrayList<>(animalMap.values());
 	}
 	

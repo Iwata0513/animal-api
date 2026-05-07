@@ -21,19 +21,19 @@ public class AnimalController {
 	}
 
 	//登録中の動物一覧 動物名とリクエストキーのみ
-    @GetMapping("/AnimalSummaryList")
+    @GetMapping("/animals/summary")
     public Map<String,String> getAnimalSummaryList() {
-        return animalInfoGetService.getAnimalSummaryList();
+        return animalInfoGetService.getAnimalSummaries();
     }
 	
 	//登録中の動物情報全て
-    @GetMapping("/AnimalAllInfo")
+    @GetMapping("/animals")
     public List<Animal> getAnimalAllInfoList() {
-        return animalInfoGetService.getAnimalAllInfoList();
+        return animalInfoGetService.getAllAnimals();
     }
     
     // 動物の情報取得
-    @GetMapping("/{animalkey}")
+    @GetMapping("animals/{animalkey}")
     public Animal getByOneAnimal(@PathVariable("animalkey") String animalkey) {
         return animalInfoGetService.getByOneAnimal(animalkey);
     }
