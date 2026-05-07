@@ -1,30 +1,34 @@
 package animal.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import animal.model.Animal;
-import animal.service.AnimalService;
+import animal.service.AnimalInfoGetService;
 
 @RestController
 public class AnimalController {
 	
-	private  final AnimalService servise;
+	private  final AnimalInfoGetService animalInfoGetService;
 	
-	public AnimalController(AnimalService service) {
-		this.servise = service;
+	public AnimalController(AnimalInfoGetService animalInfoGetService) {
+		this.animalInfoGetService = animalInfoGetService;
 	}
 
 	//登録中の動物一覧
     @GetMapping("/AnimalList")
-    public String AnimalList() {
-        return "準備中";
+    public List<Animal> AnimalList() {
+        return animalInfoGetService.getAnimalList();
     }
     
-    // 三毛猫の情報取得
-    @GetMapping("/MikeNeko")
-    public Animal MikeNeko() {
-        return servise.getMikeNeko();
+    // 動物の情報取得
+    @GetMapping("/{animalkey}")
+    public Animal getByOneAnimal(@PathVariable("animalkey") String animalkey) {
+        return animalInfoGetService.getByOneAnimal(animalkey);
     }
     
     
