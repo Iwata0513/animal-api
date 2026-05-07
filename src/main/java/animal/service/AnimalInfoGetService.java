@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import animal.model.Animal;
 import animal.data.AnimalSummary;
+import animal.exception.AnimalNotFoundException;
+import animal.exception.BadRequestException;
 
 @Service
 public class AnimalInfoGetService {
@@ -43,14 +45,14 @@ public class AnimalInfoGetService {
         
 		// リクエストキーのチェック
 		if (animalKey == null || animalKey.isBlank()) {
-            throw new IllegalArgumentException("animalKey is null or empty");
+            throw new BadRequestException("animalKey is null or empty");
         }
 
 		Animal animal = animalMap.get(animalKey);
 
 		// キーの動物の存在チェック
         if (animal == null) {
-            throw new RuntimeException("Animal not found: " + animalKey);
+            throw new AnimalNotFoundException(animalKey);
         }
 		
 		return animal;
